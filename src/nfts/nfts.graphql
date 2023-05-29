@@ -1,0 +1,32 @@
+type Query {
+  nft(id: ID!): Nft
+}
+
+type Query {
+  getByOwner(ownerId: String!): Nft
+}
+
+type Mutation {
+  createNft(ownerId: String! data: NftData!): Nft
+}
+
+type Mutation {
+  transferNft(id: ID! newOwner: String!): Nft
+}
+
+input NftData {
+  name: String!
+  blockchainLink: String!
+  description: String
+  imageUrl: String!
+  mintDate: String!
+}
+
+type Nft {
+  name: String!
+  blockchainLink: String!
+  description: String
+  imageUrl: String!
+  owner: String!
+  mintDate: String
+}

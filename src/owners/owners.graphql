@@ -1,0 +1,11 @@
+type Query {
+  owner(walletAddress: ID!): Owner
+}
+
+type Mutation {
+  createOwner(walletAddress: String!): Owner
+}
+
+type Owner {
+  walletAddress: String!
+}
