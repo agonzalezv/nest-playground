@@ -1,31 +1,25 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Post,
-  ParseIntPipe,
-} from '@nestjs/common';
-import { CreateNftDto } from './dto/create-nft.dto';
-import { Nft } from './nft.entity';
-import { NftsService } from './nfts.service';
+import { Body, Controller, Param, ParseIntPipe } from "@nestjs/common";
+import { CreateNftDto } from "./dto/create-nft.dto";
+import { Nft } from "./nft.entity";
+import { NftsService } from "./nfts.service";
 
-@Controller('nfts')
+@Controller("nfts")
 export class NftsController {
   constructor(private readonly nftsService: NftsService) {}
 
-  @Post()
-  create(@Body() ownerId, createNftDto: CreateNftDto): Promise<Nft> {
-    return this.nftsService.create(ownerId, createNftDto);
+  create(@Body() walletAddress, createNftDto: CreateNftDto): Promise<Nft> {
+    return this.nftsService.create(walletAddress, createNftDto);
   }
 
-  @Get()
-  findByOwner(@Param('ownerId', ParseIntPipe) ownerId: string): Promise<Nft[]> {
-    return this.nftsService.findAllByOwner(ownerId);
+  findByOwner(
+    @Param("ownerId", ParseIntPipe) walletAddress: string,
+    @Param("limit", ParseIntPipe) limit: number,
+    @Param("page", ParseIntPipe) page: number
+  ): Promise<Nft[]> {
+    return this.nftsService.findAllByOwner(limit, limit, walletAddress) as any;
   }
 
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<Nft> {
+  findOne(@Param("id", ParseIntPipe) id: number): Promise<Nft> {
     return this.nftsService.findOne(id);
   }
 }

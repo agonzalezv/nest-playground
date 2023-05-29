@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Owner } from '../owners/owner.entity';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Owner } from "../owners/owner.entity";
 
 @Entity()
 export class Nft {
@@ -22,8 +22,9 @@ export class Nft {
   @Column()
   imageUrl: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  mintDate: EpochTimeStamp;
+  // Can be either passed by the user, or will default to current date if not.
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  mintDate: string;
 
   @ManyToOne(() => Owner, (owner) => owner.nfts)
   owner: Owner;

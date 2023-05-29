@@ -2,6 +2,10 @@ type Query {
   owner(walletAddress: ID!): Owner
 }
 
+type Query {
+  owners: [Owner]!
+}
+
 type Mutation {
   createOwner(walletAddress: String!): Owner
 }

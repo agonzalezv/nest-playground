@@ -2,14 +2,11 @@ import {
   IsNotEmpty,
   IsDateString,
   IsUrl,
-  IsInt,
   IsString,
-} from 'class-validator';
+  IsOptional,
+} from "class-validator";
 
 export class CreateNftDto {
-  @IsInt()
-  id: number;
-
   @IsNotEmpty()
   name: string;
 
@@ -17,13 +14,15 @@ export class CreateNftDto {
   @IsUrl()
   blockchainLink: string;
 
+  @IsOptional()
   @IsString()
   description: string;
 
-  @IsUrl()
   @IsNotEmpty()
+  @IsUrl()
   imageUrl: string;
 
+  @IsOptional()
   @IsDateString()
-  mintDate: EpochTimeStamp;
+  mintDate: string;
 }

@@ -1,34 +1,38 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { NftsService } from './nfts.service';
-import { CreateNftDto } from './dto/create-nft.dto';
+import { Resolver, Query, Mutation, Args, Int } from "@nestjs/graphql";
+import { NftsService } from "./nfts.service";
+import { CreateNftDto } from "./dto/create-nft.dto";
 
-@Resolver('Nft')
+@Resolver("Nft")
 export class NftsResolver {
   constructor(private nftsService: NftsService) {}
 
   @Query()
-  async nft(@Args('id') id: number) {
+  async nft(@Args("id") id: number) {
     return this.nftsService.findOne(id);
   }
 
   @Query()
-  async getByOwner(@Args('ownerId') ownerId: string) {
-    return this.nftsService.findAllByOwner(ownerId);
+  async getByOwner(
+    @Args("walletAddress") walletAddress: string,
+    @Args("limit", { type: () => Int, defaultValue: 10 }) limit: number,
+    @Args("page", { type: () => Int, defaultValue: 1 }) page: number
+  ) {
+    return this.nftsService.findAllByOwner(limit, page, walletAddress);
   }
 
   @Mutation()
   async createNft(
-    @Args('ownerId') ownerId: string,
-    @Args('data') data: CreateNftDto,
+    @Args("walletAddress") walletAddress: string,
+    @Args("data") data: CreateNftDto
   ) {
-    return this.nftsService.create(ownerId, data);
+    return this.nftsService.create(walletAddress, data);
   }
 
   @Mutation()
   async transferNft(
-    @Args('id') id: number,
-    @Args('newOwner') newOwner: string,
+    @Args("id") id: number,
+    @Args("walletAddress") walletAddress: string
   ) {
-    return this.nftsService.updateOwner(id, newOwner);
+    return this.nftsService.updateOwner(id, walletAddress);
   }
 }

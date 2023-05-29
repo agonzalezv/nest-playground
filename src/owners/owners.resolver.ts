@@ -1,17 +1,22 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { OwnersService } from './owners.service';
+import { Resolver, Query, Mutation, Args } from "@nestjs/graphql";
+import { OwnersService } from "./owners.service";
 
-@Resolver('Owner')
+@Resolver("Owner")
 export class OwnersResolver {
   constructor(private ownersService: OwnersService) {}
 
   @Query()
-  async owner(@Args('id') id: string) {
-    return this.ownersService.findOne(id);
+  async owner(@Args("walletAddress") walletAddress: string) {
+    return this.ownersService.findOne(walletAddress);
+  }
+
+  @Query()
+  async owners() {
+    return this.ownersService.findAll();
   }
 
   @Mutation()
-  async createOwner(@Args('walletAddress') walletAddress: string) {
+  async createOwner(@Args("walletAddress") walletAddress: string) {
     return this.ownersService.create({ walletAddress });
   }
 }

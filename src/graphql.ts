@@ -13,21 +13,23 @@ export class NftData {
     blockchainLink: string;
     description?: Nullable<string>;
     imageUrl: string;
-    mintDate: string;
+    mintDate?: Nullable<string>;
 }
 
 export abstract class IQuery {
     abstract nft(id: string): Nullable<Nft> | Promise<Nullable<Nft>>;
 
-    abstract getByOwner(ownerId: string): Nullable<Nft> | Promise<Nullable<Nft>>;
+    abstract getByOwner(walletAddress: string, limit?: Nullable<number>, page?: Nullable<number>): GetByOwnerResponse | Promise<GetByOwnerResponse>;
 
     abstract owner(walletAddress: string): Nullable<Owner> | Promise<Nullable<Owner>>;
+
+    abstract owners(): Nullable<Owner>[] | Promise<Nullable<Owner>[]>;
 }
 
 export abstract class IMutation {
-    abstract createNft(ownerId: string, data: NftData): Nullable<Nft> | Promise<Nullable<Nft>>;
+    abstract createNft(walletAddress: string, data: NftData): Nft | Promise<Nft>;
 
-    abstract transferNft(id: string, newOwner: string): Nullable<Nft> | Promise<Nullable<Nft>>;
+    abstract transferNft(id: string, walletAddress: string): Nft | Promise<Nft>;
 
     abstract createOwner(walletAddress: string): Nullable<Owner> | Promise<Nullable<Owner>>;
 }
@@ -37,8 +39,12 @@ export class Nft {
     blockchainLink: string;
     description?: Nullable<string>;
     imageUrl: string;
-    owner: string;
-    mintDate?: Nullable<string>;
+    mintDate: string;
+}
+
+export class GetByOwnerResponse {
+    nfts?: Nullable<Nullable<Nft>[]>;
+    total?: Nullable<number>;
 }
 
 export class Owner {

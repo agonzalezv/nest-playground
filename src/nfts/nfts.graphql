@@ -3,15 +3,19 @@ type Query {
 }
 
 type Query {
-  getByOwner(ownerId: String!): Nft
+  getByOwner(
+    walletAddress: String!
+    limit: Int, 
+    page: Int,
+  ): GetByOwnerResponse!
 }
 
 type Mutation {
-  createNft(ownerId: String! data: NftData!): Nft
+  createNft(walletAddress: String! data: NftData!): Nft!
 }
 
 type Mutation {
-  transferNft(id: ID! newOwner: String!): Nft
+  transferNft(id: ID! walletAddress: String!): Nft!
 }
 
 input NftData {
@@ -19,7 +23,7 @@ input NftData {
   blockchainLink: String!
   description: String
   imageUrl: String!
-  mintDate: String!
+  mintDate: String
 }
 
 type Nft {
@@ -27,6 +31,11 @@ type Nft {
   blockchainLink: String!
   description: String
   imageUrl: String!
-  owner: String!
-  mintDate: String
+  # Mandatory on return type
+  mintDate: String!
+}
+
+type GetByOwnerResponse {
+  nfts: [Nft]
+  total: Int
 }
