@@ -30,6 +30,8 @@ export class AuthService {
 
   async validateToken(token: string): Promise<ValidateTokenResponse> {
     try {
+      // Fix: JWT authentication is not working well.
+      // Any user can use any JWT as long as is valid.
       const { walletAddress } = this.jwtService.verify(token);
       const user = await this.ownersRepository.findOneBy({
         walletAddress: walletAddress,
