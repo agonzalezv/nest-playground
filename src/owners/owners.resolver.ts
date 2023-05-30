@@ -20,7 +20,6 @@ export class OwnersResolver {
   }
 
   @Mutation()
-  @UseGuards(GqlAuthGuard)
   async createOwner(@Args("walletAddress") walletAddress: string) {
     return this.ownersService.create({ walletAddress });
   }
