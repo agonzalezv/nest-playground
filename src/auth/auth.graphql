@@ -1,0 +1,12 @@
+type Mutation {
+  login(walletAddress: String!): ValidateUserResponse 
+}
+
+type Query {
+  getCurrentUser: Owner
+}
+
+type ValidateUserResponse { 
+  user: Owner
+  token: String 
+}

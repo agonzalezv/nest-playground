@@ -15,8 +15,8 @@ In this Challenge you are required to use NestJS (https://nestjs.com/) with Type
 - [x] Add a module named `nft` with the following properties (id, name, blockchainLink, description, imageUrl, owner, mintDate)
     - [x] Expose the following fields to the client (name, blockchainLink, description, imageUrl, mintDate)
 - [ ] Add User authentication using JWT token with Role Based Access Control
-- [ ] Add a mutation to transfer the NFT to another user
-- [ ] Add a query to fetch user's owned NFTs with pagination
+- [x] Add a mutation to transfer the NFT to another user
+- [x] Add a query to fetch user's owned NFTs with pagination
 - [ ] Add unit tests where applicable
 
 
@@ -28,7 +28,7 @@ In this Challenge you are required to use NestJS (https://nestjs.com/) with Type
         - [ ] a request to graphql fails without a JWT
         - [ ] a request to graphql succeeds with a JWT
         - [ ] can execute a mutation to change the owner
-        - [ ]show pagination
+        - [ ] show pagination
     - [ ] Explain any assumptions you made (if any)
         - [ ] These may also be in the readme
     - [ ] Explain anything else that you think is of interest

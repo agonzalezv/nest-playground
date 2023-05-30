@@ -35,7 +35,6 @@ export class NftsService {
 
   async findPaginatedNftsByOwner(limit: number, page: number, owner: Owner) {
     const offset = (Number(page) - 1) * limit;
-    console.log("AAAA", offset);
     const result = await this.nftsRepository.findAndCount({
       where: { owner: owner },
       take: limit,

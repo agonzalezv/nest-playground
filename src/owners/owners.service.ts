@@ -3,7 +3,6 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CreateOwnerDto } from "./dto/create-owner.dto";
 import { Owner } from "./owner.entity";
-
 @Injectable()
 export class OwnersService {
   constructor(
