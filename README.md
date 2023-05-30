@@ -23,7 +23,7 @@ In this Challenge you are required to use NestJS (https://nestjs.com/) with Type
 ## On Completion
 
 - Provide your code for review, (ideally in a git repository)
-- Provide a loom recording:
+- Provide a loom recording: 
     - Show that your solution works
         - [x] a request to graphql fails without a JWT
         - [x] a request to graphql succeeds with a JWT
@@ -38,6 +38,14 @@ In this Challenge you are required to use NestJS (https://nestjs.com/) with Type
             - Mutations and queries to retrieve and create users
             - Some extra validations to inputs
         
+# See it in action: 
+
+https://www.dropbox.com/s/7iyr4xvfbfra4wv/Screen%20Recording%202023-05-30%20at%2020.07.13.mov?dl=0
+
+**Note**: Dropbox seem to downscale the video quality a lot, so downloading the video before watching is recommended. It goes beyond the allocated 5 minutes, but: 
+- I wanted to show an uncut demo, and
+- I wanted to show the extra features I added. 
+
 Over the course of a couple of days, we will review your recording, and may ask questions against it asynchronously.
 
 # SETUP
